@@ -37,7 +37,7 @@ func TestCreateEmbeddedSignatureRequestFileURL(t *testing.T) {
 
 	client := createVcrClient(vcr)
 
-	request := EmbeddedRequest{
+	request := CreationRequest{
 		TestMode: true,
 		ClientID: os.Getenv("HELLOSIGN_CLIENT_ID"),
 		FileURL:  []string{"http://www.pdf995.com/samples/pdf.pdf"},
@@ -214,9 +214,9 @@ func createVcrClient(transport *recorder.Recorder) Client {
 	return client
 }
 
-func createEmbeddedRequest() EmbeddedRequest {
+func createEmbeddedRequest() CreationRequest {
 
-	return EmbeddedRequest{
+	return CreationRequest{
 		TestMode: true,
 		ClientID: os.Getenv("HELLOSIGN_CLIENT_ID"),
 		File: []string{
@@ -228,11 +228,11 @@ func createEmbeddedRequest() EmbeddedRequest {
 		Message: "cool message bro",
 		// SigningRedirectURL: "example signing redirect url",
 		Signers: []Signer{
-			Signer{
+			{
 				Email: "freddy@hellosign.com",
 				Name:  "Freddy Rangel",
 			},
-			Signer{
+			{
 				Email: "frederick.rangel@gmail.com",
 				Name:  "Frederick Rangel",
 			},
@@ -248,8 +248,8 @@ func createEmbeddedRequest() EmbeddedRequest {
 			"more": "dogs",
 		},
 		FormFieldsPerDocument: [][]DocumentFormField{
-			[]DocumentFormField{
-				DocumentFormField{
+			{
+				{
 					APIId:    "api_id",
 					Name:     "display name",
 					Type:     "text",
@@ -260,8 +260,8 @@ func createEmbeddedRequest() EmbeddedRequest {
 					Signer:   0,
 				},
 			},
-			[]DocumentFormField{
-				DocumentFormField{
+			{
+				{
 					APIId:    "api_id_2",
 					Name:     "display name 2",
 					Type:     "text",
